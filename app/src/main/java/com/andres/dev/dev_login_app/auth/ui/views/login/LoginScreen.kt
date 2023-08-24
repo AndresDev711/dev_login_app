@@ -8,6 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.andres.dev.dev_login_app.auth.ui.views.login.components.BodyLogin
+import com.andres.dev.dev_login_app.auth.ui.views.login.components.FooterLogin
 import com.andres.dev.dev_login_app.auth.ui.views.login.components.HeaderLogin
 
 @Composable
@@ -19,6 +20,7 @@ fun LoginScreen() {
   ) {
     HeaderLogin(Modifier.align(Alignment.TopEnd))
     BodyLogin(Modifier.align(Alignment.Center))
+    FooterLogin(Modifier.align(Alignment.BottomCenter))
   }
 }
 

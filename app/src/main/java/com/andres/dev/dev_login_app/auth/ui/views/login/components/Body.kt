@@ -5,13 +5,24 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Clear
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -19,6 +30,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.andres.dev.dev_login_app.R
@@ -35,9 +49,9 @@ fun BodyLogin(modifier: Modifier) {
   Column(modifier = modifier) {
     LogoApp(modifier = Modifier.align(Alignment.CenterHorizontally))
     Spacer(modifier = Modifier.size(16.dp))
-    Email(email = "", onTextChange = {})
+    Email(email = email, onTextChange = { email = it })
     Spacer(modifier = Modifier.size(16.dp))
-    Password(password = "", onTextChange = {})
+    Password(password = password, onTextChange = { password = it })
     Spacer(modifier = Modifier.size(16.dp))
     Forgot(modifier = Modifier.align(Alignment.End))
     Spacer(modifier = Modifier.size(16.dp))
@@ -57,16 +71,52 @@ fun LogoApp(modifier: Modifier) {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Email(email: String, onTextChange: (String) -> Unit) {
-  TextField(value = email, onValueChange = { onTextChange(it) }, modifier = Modifier.fillMaxWidth())
+  TextField(
+    value = email,
+    onValueChange = { onTextChange(it) },
+    modifier = Modifier.fillMaxWidth(),
+    placeholder = { Text(text = "Email") },
+    maxLines = 1,
+    singleLine = true,
+    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
+    colors = TextFieldDefaults.textFieldColors(
+      textColor = Color(0xFFB2B2B2),
+      containerColor = Color(0xFFFAFAFA),
+      focusedIndicatorColor = Color.Transparent,
+      unfocusedIndicatorColor = Color.Transparent
+    )
+  )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Password(password: String, onTextChange: (String) -> Unit) {
+  var isVisibility by remember {
+    mutableStateOf(false)
+  }
   TextField(
     value = password,
     onValueChange = { onTextChange(it) },
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier.fillMaxWidth(),
+    placeholder = { Text(text = "Password") },
+    maxLines = 1,
+    singleLine = true,
+    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+    colors = TextFieldDefaults.textFieldColors(
+      textColor = Color(0xFFB2B2B2),
+      containerColor = Color(0xFFFAFAFA),
+      focusedIndicatorColor = Color.Transparent,
+      unfocusedIndicatorColor = Color.Transparent
+    ),
+    trailingIcon = {
+      val image = if (isVisibility) Icons.Filled.VisibilityOff else Icons.Filled.Visibility
+      IconButton(
+        onClick = { if(password.isNotEmpty()) isVisibility = !isVisibility }
+      ) {
+        Icon(imageVector = image, contentDescription = "show password")
+      }
+    },
+    visualTransformation = if (isVisibility) VisualTransformation.None else PasswordVisualTransformation()
   )
 }
 

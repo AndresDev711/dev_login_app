@@ -1,5 +1,6 @@
 package com.andres.dev.dev_login_app.auth.ui.views.login.components
 
+import android.util.Patterns
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -50,9 +51,15 @@ fun BodyLogin(modifier: Modifier) {
   Column(modifier = modifier) {
     LogoApp(modifier = Modifier.align(Alignment.CenterHorizontally))
     Spacer(modifier = Modifier.size(16.dp))
-    Email(email = email, onTextChange = { email = it })
+    Email(email = email, onTextChange = {
+      email = it
+      isLoginEnabled = enableLogin(email, password)
+    })
     Spacer(modifier = Modifier.size(16.dp))
-    Password(password = password, onTextChange = { password = it })
+    Password(password = password, onTextChange = {
+      password = it
+      isLoginEnabled = enableLogin(email, password)
+    })
     Spacer(modifier = Modifier.size(16.dp))
     Forgot(modifier = Modifier.align(Alignment.End))
     Spacer(modifier = Modifier.size(16.dp))
@@ -147,3 +154,6 @@ fun ButtonLogin(loginEnable: Boolean) {
     Text(text = "Log In")
   }
 }
+
+fun enableLogin(email: String, password: String)
+  = Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.length> 6

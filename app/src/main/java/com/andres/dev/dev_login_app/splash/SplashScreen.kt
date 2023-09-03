@@ -22,29 +22,31 @@ import kotlinx.coroutines.delay
 @Composable
 fun SplashScreen(navController: NavHostController) {
 
-    LaunchedEffect(key1 = true) {
-        delay(5000)
-        navController.popBackStack()
-        navController.navigate(Routes.LoginScreen.route)
-    }
-    Splash()
+  LaunchedEffect(key1 = true) {
+    delay(3000)
+    navController.popBackStack()
+//        navController.navigate(Routes.LoginScreen.route)
+    navController.navigate(Routes.FirstScreen.route)
+
+  }
+  Splash()
 }
 
 @Composable
 fun Splash() {
-    Column(
-        modifier = Modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
+  Column(
+    modifier = Modifier.fillMaxSize(),
+    horizontalAlignment = Alignment.CenterHorizontally,
+    verticalArrangement = Arrangement.Center
+  ) {
 
-        Image(
-            painter = painterResource(id = R.drawable.ic_login),
-            contentDescription = "Logo Splash",
-            Modifier.size(140.dp, 150.dp)
-        )
+    Image(
+      painter = painterResource(id = R.drawable.ic_login),
+      contentDescription = "Logo Splash",
+      Modifier.size(140.dp, 150.dp)
+    )
 
-        Text(text = "BIENVENIDOS", fontSize = 30.sp, fontWeight = FontWeight.Bold)
+    Text(text = "BIENVENIDOS", fontSize = 30.sp, fontWeight = FontWeight.Bold)
 
-    }
+  }
 }

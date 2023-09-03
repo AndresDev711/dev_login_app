@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Clear
@@ -119,7 +120,7 @@ fun Password(password: String, onTextChange: (String) -> Unit) {
     trailingIcon = {
       val image = if (isVisibility) Icons.Filled.VisibilityOff else Icons.Filled.Visibility
       IconButton(
-        onClick = { if(password.isNotEmpty()) isVisibility = !isVisibility }
+        onClick = { if (password.isNotEmpty()) isVisibility = !isVisibility }
       ) {
         Icon(imageVector = image, contentDescription = "show password")
       }
@@ -141,7 +142,8 @@ fun Forgot(modifier: Modifier) {
 
 @Composable
 fun ButtonLogin(loginEnable: Boolean) {
-  Button(onClick = { },
+  Button(
+    onClick = { },
     enabled = loginEnable,
     modifier = Modifier.fillMaxWidth(),
     colors = ButtonDefaults.buttonColors(
@@ -155,5 +157,5 @@ fun ButtonLogin(loginEnable: Boolean) {
   }
 }
 
-fun enableLogin(email: String, password: String)
-  = Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.length> 6
+fun enableLogin(email: String, password: String) =
+  Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.length > 6

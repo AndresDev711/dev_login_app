@@ -10,7 +10,7 @@ android {
   defaultConfig {
     applicationId = "com.andres.dev.dev_login_app"
     minSdk = 26
-    targetSdk = 33
+    targetSdk = 34
     versionCode = 1
     versionName = "1.0"
 
@@ -60,6 +60,8 @@ dependencies {
   implementation("androidx.compose.material3:material3")
 
   implementation("androidx.compose.material:material-icons-extended:1.5.0")
+  //NAVIGATION
+  implementation("androidx.navigation:navigation-compose:2.7.1")
 
   testImplementation("junit:junit:4.13.2")
   androidTestImplementation("androidx.test.ext:junit:1.1.5")

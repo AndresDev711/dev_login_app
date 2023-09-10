@@ -6,12 +6,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Clear
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
@@ -32,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -84,7 +81,7 @@ fun Email(email: String, onTextChange: (String) -> Unit) {
     value = email,
     onValueChange = { onTextChange(it) },
     modifier = Modifier.fillMaxWidth(),
-    placeholder = { Text(text = "Email") },
+    placeholder = { Text(text = stringResource(id = R.string.login_email)) },
     maxLines = 1,
     singleLine = true,
     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
@@ -107,7 +104,7 @@ fun Password(password: String, onTextChange: (String) -> Unit) {
     value = password,
     onValueChange = { onTextChange(it) },
     modifier = Modifier.fillMaxWidth(),
-    placeholder = { Text(text = "Password") },
+    placeholder = { Text(text = stringResource(id = R.string.login_password)) },
     maxLines = 1,
     singleLine = true,
     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
